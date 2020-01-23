@@ -70,15 +70,11 @@
         "verificationMethod": "https://example.edu/issuers/keys/1",
         "jws": "eyJhbGciOiJSUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..TCYt5XsITJX1CxPCT8yAV-TVkIEq_PbChOMqsLfRoPsnsgw5WEuts01mq-pQy7UJiN5mgRxD-WUcX16dUEMGlv50aqzpqh4Qktb3rk-BuQy72IFLOqV0G_zS245-kronKb78cPN25DGlcTwLtjPAYuNzVBAh4vGHSrQyHUdBBPM"
       }
-    }],
-    "proof": {
-      "type": "RsaSignature2018",
-      "created": "2018-09-14T21:19:10Z",
-      "proofPurpose": "authentication",
-      "verificationMethod": "did:example:ebfeb1f712ebc6f1c276e12ec21#keys-1",
-      "jws": "eyJhbGciOiJSUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..kTCYt5XsITJX1CxPCT8yAV-TVIw5WEuts01mq-pQy7UJiN5mgREEMGlv50aqzpqh4Qq_PbChOMqsLfRoPsnsgxD-WUcX16dUOqV0G_zS245-kronKb78cPktb3rk-BuQy72IFLN25DYuNzVBAh4vGHSrQyHUGlcTwLtjPAnKb78"
-    }
+    }]
   };
+  // ^ Note that:
+  // 1. The Verifiable Credential is signed, and wrapped in a VerifiablePresentation.
+  // 2. The wrapping VerifiablePresentation is not signed.
 
   async function onClickReceive() {
     // document.getElementById('storeResults').innerHTML = ''; // clear results
