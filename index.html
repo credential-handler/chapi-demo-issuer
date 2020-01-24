@@ -36,6 +36,12 @@
 
     <a class="waves-effect waves-light btn" id="receiveButton">Receive a Credential</a>
   </div>
+
+  <div class="card-panel hide" id="resultsPanel">
+    <h6>Result of store() operation:</h6>
+
+    <code id="storeResults"></code>
+  </div>
 </div>
 <script>
   const testCredential = {
@@ -83,10 +89,15 @@
     const credentialType = 'VerifiablePresentation';
     const webCredentialWrapper = new WebCredential(credentialType, testCredential);
 
+    document.getElementById('storeResults').innerText = 'Storing credential...';
+
     // Use Credential Handler API to store
     const result = await navigator.credentials.store(webCredentialWrapper);
 
-    // console.log('Result of receiving via store() request:', result);
+    document.getElementById('resultsPanel').classList.remove('hide');
+    document.getElementById('storeResults').innerText = JSON.stringify(result, null, 2);
+
+    console.log('Result of receiving via store() request:', result);
     //
     // if(!result) {
     //   document.getElementById('storeResults').innerHTML = 'null result';
@@ -97,7 +108,7 @@
   }
 
   function ready(fn) {
-    if (document.readyState !== 'loading'){
+    if(document.readyState !== 'loading') {
       fn();
     } else {
       document.addEventListener('DOMContentLoaded', fn);
