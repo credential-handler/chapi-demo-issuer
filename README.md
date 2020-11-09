@@ -25,8 +25,8 @@ Demos:
 ## Local Development
 
 1. Run `npm install`
-2. Edit `/etc/hosts` and map `chapi-demo-wallet.digitalbazaar.com` to `127.0.0.1`.
-3. Run `./node_modules/.bin/http-server . -S -p 8082`
+2. Run `./node_modules/.bin/http-server . -S -p 8082`
+3. Visit `https://chapi-demo-issuer.localhost:8082`
 
 ## Security
 
