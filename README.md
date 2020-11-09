@@ -25,7 +25,7 @@ Demos:
 ## Local Development
 
 1. Run `npm install`
-2. Run `./node_modules/.bin/http-server . -S -p 8082`
+2. Run `./node_modules/.bin/http-server . -S --cors -p 8082`
 3. Visit `https://chapi-demo-issuer.localhost:8082`
 
 ## Security
