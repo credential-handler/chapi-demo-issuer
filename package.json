@@ -23,6 +23,6 @@
   },
   "files": [],
   "scripts": {
-    "serve": "http-server . -S --cors -p 8082"
+    "start": "http-server . -S --cors -p 8082"
   }
 }

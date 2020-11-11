@@ -25,7 +25,7 @@ Demos:
 ## Local Development
 
 1. Run `npm install`
-2. Run `npm run serve`
+2. Run `npm start`
 3. Visit `https://chapi-demo-issuer.localhost:8082`
 
 ## Security
