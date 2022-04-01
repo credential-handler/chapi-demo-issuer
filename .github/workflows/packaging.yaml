@@ -41,6 +41,7 @@ jobs:
       with:
         build-args: |
           MEDIATOR=authnio.qa.dbdev.app
+          WALLET_HOST=wallet.qa.dbdev.app
         push: true
         tags: us.gcr.io/${{ env.CONTAINER_OWNER }}/${{ env.CONTAINER_IMAGE_NAME }}:${{ steps.version.outputs.current-version }}-rc${{ steps.rc.outputs.version_build_number }}
 
