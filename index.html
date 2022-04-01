@@ -12,6 +12,7 @@
 
   <!--Credential Handler API Polyfill-->
   <script src="https://unpkg.com/credential-handler-polyfill@2.3.0/dist/credential-handler-polyfill.min.js"></script>
+  <script src="config.js"></script>
 </head>
 <body>
 
@@ -124,9 +125,6 @@
     document.getElementById('receiveButton').addEventListener('click', onClickReceive);
     console.log('Document ready.')
   })
-
-  const MEDIATOR = 'https://authn.io/mediator' + '?origin=' +
-    encodeURIComponent(window.location.origin);
 
   credentialHandlerPolyfill
     .loadOnce(MEDIATOR)
