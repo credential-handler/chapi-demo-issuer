@@ -1,6 +1,6 @@
 # chapi-demo-issuer Changelog
 
-## 1.2.0 - TBD
+## 1.2.0 - 2022-04-01
 
 ### Changed
 - Make `WALLET_HOST` configurable.
