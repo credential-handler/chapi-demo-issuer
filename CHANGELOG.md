@@ -1,6 +1,6 @@
 # chapi-demo-issuer Changelog
 
-## 1.3.1 - TBD
+## 1.3.1 - 2022-04-01
 
 ### Fixed
 - Override `httpd.conf` to enable CORS.
