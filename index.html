@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
   <!--Credential Handler API Polyfill-->
-  <script src="https://unpkg.com/credential-handler-polyfill@2.3.0/dist/credential-handler-polyfill.min.js"></script>
+  <script src="https://unpkg.com/credential-handler-polyfill@3.0.0/dist/credential-handler-polyfill.min.js"></script>
   <script src="config.js"></script>
 </head>
 <body>
@@ -31,11 +31,11 @@
       (using CHAPI's <code>store()</code> under the hood).
     </p>
 
-    <p>When you click the Receive button, a Verifiable Credential will
+    <p>When you click the Store() button, a Verifiable Credential will
       be issued and sent to your digital wallet for storage.
     </p>
 
-    <a class="waves-effect waves-light btn" id="receiveButton">Receive a Credential</a>
+    <a class="waves-effect waves-light btn" id="receiveButton">Issue and Store() a Credential</a>
   </div>
 
   <div class="card-panel hide" id="resultsPanel">
@@ -47,12 +47,6 @@
 <script>
   const testCredential = {
     "@context": [
-      "https://www.w3.org/2018/credentials/v1",
-      "https://www.w3.org/2018/credentials/examples/v1"
-    ],
-    "type": "VerifiablePresentation",
-    "verifiableCredential": [{
-      "@context": [
         "https://www.w3.org/2018/credentials/v1",
         "https://www.w3.org/2018/credentials/examples/v1"
       ],
@@ -77,7 +71,17 @@
         "verificationMethod": "https://example.edu/issuers/keys/1",
         "jws": "eyJhbGciOiJSUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..TCYt5XsITJX1CxPCT8yAV-TVkIEq_PbChOMqsLfRoPsnsgw5WEuts01mq-pQy7UJiN5mgRxD-WUcX16dUEMGlv50aqzpqh4Qktb3rk-BuQy72IFLOqV0G_zS245-kronKb78cPN25DGlcTwLtjPAYuNzVBAh4vGHSrQyHUdBBPM"
       }
-    }]
+  };
+
+  const testPresentation = {
+    "@context": [
+      "https://www.w3.org/2018/credentials/v1",
+      "https://www.w3.org/2018/credentials/examples/v1"
+    ],
+    "type": "VerifiablePresentation",
+    "verifiableCredential": [
+      testCredential
+    ] 
   };
   // ^ Note that:
   // 1. The Verifiable Credential is signed, and wrapped in a VerifiablePresentation.
@@ -89,9 +93,10 @@
     // Construct the WebCredential wrapper around the credential to be stored
     const credentialType = 'VerifiablePresentation';
     const webCredentialWrapper = new WebCredential(
-      credentialType, testCredential, {
+      credentialType, testPresentation, {
         recommendedHandlerOrigins: [
-          'https://chapi-demo-wallet.digitalbazaar.com'
+          'https://chapi-demo-wallet.digitalbazaar.com',
+          'https://demo.vereswallet.dev'
         ]
       });
 
