@@ -1,6 +1,6 @@
 # chapi-demo-issuer Changelog
 
-## 2.0.0 - 2022-10-xx
+## 2.0.0 - 2022-10-25
 
 ### Changed
 - Set `MEDIATOR=authnio.qa.authorization.io`.
