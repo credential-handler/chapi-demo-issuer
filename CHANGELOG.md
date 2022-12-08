@@ -1,6 +1,6 @@
 # chapi-demo-issuer Changelog
 
-## 2.0.3 - 2022-12-dd
+## 2.0.3 - 2022-12-08
 
 ### Fixed
 - Make example VC use less than 60 seconds in timestamp.
