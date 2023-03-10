@@ -1,5 +1,10 @@
 # chapi-demo-issuer Changelog
 
+## 2.1.0 - 2023-03-10
+
+### Added
+- Add `protocols` usage example in store request.
+
 ## 2.0.3 - 2022-12-08
 
 ### Fixed
