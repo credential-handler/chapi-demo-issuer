@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
   <!--Credential Handler API Polyfill-->
-  <script src="https://unpkg.com/credential-handler-polyfill@3.0.2/dist/credential-handler-polyfill.min.js"></script>
+  <script src="https://unpkg.com/credential-handler-polyfill@3/dist/credential-handler-polyfill.min.js"></script>
   <script src="config.js"></script>
 </head>
 <body>
@@ -81,7 +81,7 @@
     "type": "VerifiablePresentation",
     "verifiableCredential": [
       testCredential
-    ] 
+    ]
   };
   // ^ Note that:
   // 1. The Verifiable Credential is signed, and wrapped in a VerifiablePresentation.
@@ -90,13 +90,26 @@
   async function onClickReceive() {
     // document.getElementById('storeResults').innerHTML = ''; // clear results
 
-    // Construct the WebCredential wrapper around the credential to be stored
+    const searchParams = new URLSearchParams();
+    searchParams.set('issuer', 'https://example.edu/oid4vc-example');
+    searchParams.set(
+      'credential_type',
+      'https://example.org/examples#UniversityDegreeCredential');
+    searchParams.set('pre-authorized_code', 'not_real_12345');
+    searchParams.set('fake', JSON.stringify(testPresentation));
+    const oid4vcUrl = `openid-initiate-issuance://?${searchParams}`;
+    console.log('oid4vc', oid4vcUrl);
+
+    // construct the WebCredential wrapper around the credential to be stored
     const credentialType = 'VerifiablePresentation';
     const webCredentialWrapper = new WebCredential(
       credentialType, testPresentation, {
         recommendedHandlerOrigins: [
           'https://wallet.example.chapi.io/'
-        ]
+        ],
+        protocols: {
+          OID4VC: oid4vcUrl
+        }
       });
 
     document.getElementById('storeResults').innerText = 'Storing credential...';
