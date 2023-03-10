@@ -1,5 +1,10 @@
 # chapi-demo-issuer Changelog
 
+## 2.1.1 - 2023-03-xx
+
+### Changed
+- Upgrade `docker` actions in packaging workflow.
+
 ## 2.1.0 - 2023-03-10
 
 ### Added
