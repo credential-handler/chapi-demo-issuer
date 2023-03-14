@@ -90,15 +90,29 @@
   async function onClickReceive() {
     // document.getElementById('storeResults').innerHTML = ''; // clear results
 
-    const searchParams = new URLSearchParams();
-    searchParams.set('issuer', 'https://example.edu/oid4vc-example');
-    searchParams.set(
-      'credential_type',
-      'https://example.org/examples#UniversityDegreeCredential');
-    searchParams.set('pre-authorized_code', 'not_real_12345');
-    searchParams.set('fake', JSON.stringify(testPresentation));
-    const oid4vcUrl = `openid-initiate-issuance://?${searchParams}`;
-    console.log('oid4vc', oid4vcUrl);
+    // fake OID4VC URL
+    let oid4vcUrl;
+    {
+      const searchParams = new URLSearchParams();
+      searchParams.set('issuer', 'https://example.edu/oid4vc-example');
+      searchParams.set(
+        'credential_type',
+        'https://example.org/examples#UniversityDegreeCredential');
+      searchParams.set('pre-authorized_code', 'not_real_12345');
+      searchParams.set('fake', JSON.stringify(testPresentation));
+      oid4vcUrl = `openid-initiate-issuance://?${searchParams}`;
+    }
+    console.log('oid4vcUrl', oid4vcUrl);
+
+    // fake vcapi URL
+    let vcapiUrl;
+    {
+      const searchParams = new URLSearchParams();
+      searchParams.set('fake', JSON.stringify(testPresentation));
+      oid4vcUrl = 'https://vcapi.example/exchangers/z123/exchanges/z456?' +
+        searchParams;
+    }
+    console.log('vcapiUrl', vcapiUrl);
 
     // construct the WebCredential wrapper around the credential to be stored
     const credentialType = 'VerifiablePresentation';
@@ -108,7 +122,8 @@
           'https://wallet.example.chapi.io/'
         ],
         protocols: {
-          OID4VC: oid4vcUrl
+          OID4VC: oid4vcUrl,
+          vcapi: vcapiUrl
         }
       });
 
