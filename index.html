@@ -114,6 +114,12 @@
     }
     console.log('vcapiUrl', vcapiUrl);
 
+    // fake interaction URL; `iuv=1` marks it as an interaction URL so the
+    // mediator offers a cross-device QR code (the URL itself is not a live
+    // exchange, so scanning the QR code goes nowhere)
+    const interactionUrl = `${vcapiUrl}&iuv=1`;
+    console.log('interactionUrl', interactionUrl);
+
     // construct the WebCredential wrapper around the credential to be stored
     const credentialType = 'VerifiablePresentation';
     const webCredentialWrapper = new WebCredential(
@@ -122,6 +128,7 @@
           'https://wallet.example.chapi.io/'
         ],
         protocols: {
+          interact: interactionUrl,
           OID4VC: oid4vcUrl,
           vcapi: vcapiUrl
         }
